@@ -1,0 +1,14 @@
+#create repo at git
+
+#fix in ruby src /ext/Setup #zlib to zlib
+#fix in ruby src /ext/readline run extconv.rb installing libncurses5-dev and libreadline5-dev
+#install ruby
+#install rubygems
+#install libzlib-ruby
+#install rails
+#get libsqlite3-dev
+
+#
+
+#do bundle install to get sqlite3
+#checkout localhost:3000
