@@ -1,0 +1,18 @@
+<h1>Strona główna</h1>
+
+<% if @current_user %>
+<pre>
+	Stwórz nowy projekt!
+	Jeżeli nie jesteś <%= @current_user.name %> to <%= link_to 'wyloguj się!', logout_path %>
+</pre>
+<% else %>
+<pre>
+	<%= link_to 'Zaloguj się!', login_path %>
+	Nie masz jeszcze konta? 
+	<%= link_to 'Zarejestruj się!', new_user_path %>
+</pre>
+<% end %>
+
+<%= @current_user.to_s %>
+
+<%= session.to_s %>
