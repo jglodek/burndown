@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 	
 	def create
 		@user = User.new(params[:user])
-		if(@user.save)
+		if(@user && @user.save)
 			redirect_to root_url, :notice => "Signed up!"
 		else
 			render "new"
@@ -15,10 +15,7 @@ class UsersController < ApplicationController
 	def destroy
 		user = User.find(params[:id])
 		user.destroy
-		redirect_to root_url, :notice => "Skasowano!"
+		redirect_to root_url, :notice => "User account deleted!"
 	end
 	
-	def index
-		@all_users = User.all
-	end
 end

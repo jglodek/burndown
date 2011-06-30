@@ -2,7 +2,8 @@
 
 <% if @current_user %>
 <pre>
-	Stwórz nowy projekt!
+	<%= link_to "Stwórz nowy projekt!", new_project_path %>
+	<%= link_to "Zobacz swoje projekty!", projects_path %>
 	Jeżeli nie jesteś <%= @current_user.name %> to <%= link_to 'wyloguj się!', logout_path %>
 </pre>
 <% else %>
@@ -13,6 +14,3 @@
 </pre>
 <% end %>
 
-<%= @current_user.to_s %>
-
-<%= session.to_s %>

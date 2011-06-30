@@ -6,5 +6,8 @@ class User < ActiveRecord::Base
 	validates_presence_of :password, :on => :create
 	validates_presence_of :name, :on => :create
 	validates_uniqueness_of :email, :on => :create
+	
+	has_many :project_memberships
+	has_many :projects, :through => :project_memberships		
 end
 
