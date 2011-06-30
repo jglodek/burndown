@@ -1,0 +1,21 @@
+
+<table border>
+<tr>
+	<td>Title</td>
+	<td>Description</td>
+	<td>Created</td>
+	<td>Finished</td>
+	<td>Workers</td>
+</tr>
+<% @all_projects.each do |p| %>
+<tr>
+	<td><%= link_to p.title, p %></td>
+	<td><%= p.description %></td>
+	<td><%= p.created_at %></td>
+	<td><%= p.finished_at ? p.finished_at : "Unfinished" %></td>
+	<td><%= p.project_memberships.size %></td>
+</tr>
+<% end %>
+</table>
+
+<%= link_to 'New project', new_project_path() %>

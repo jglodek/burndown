@@ -1,0 +1,8 @@
+<div style = "position:absolute; top:10px; right:20px;text-align:right;">
+	<% if @current_user %>
+		You're logged in as <%= link_to @current_user.name, @current_user %>
+		<%= link_to 'Logout', logout_path %>
+	<% else %>
+		You're not logged in. <%= link_to 'Login', login_path %> or <%= link_to 'Signup', signup_path %>
+	<% end %>
+</div>

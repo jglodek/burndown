@@ -1,0 +1,11 @@
+<div style="margin:30px;position:absolute; bottom:10px;">
+<%= session.to_s %><br>
+PROJECT_MEM<br>
+<%= ProjectMembership.all.each do |pm|%>
+<%= pm %><br>
+<% end %>
+PROJECT<br>
+<%= Project.all.each do |p|%>
+<%= p %><br>
+<% end %></div>
+</pre>

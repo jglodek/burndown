@@ -1,0 +1,11 @@
+HEJ HO!
+<p>
+jest <%= @all_users.size %> uzytkownikow <br>
+</p>
+<% @all_users.each do |usr| %>
+	<%= usr.email %> <%= link_to 'delete', usr, :method => :delete %> <br>
+<% end %>
+
+<p>
+<%= link_to( 'Dodaj uzytkownika', :controller => "users", :action => 'new' ) %>
+</p>
