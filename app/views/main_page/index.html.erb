@@ -2,15 +2,15 @@
 
 <% if @current_user %>
 <pre>
-	<%= link_to "Stwórz nowy projekt!", new_project_path %>
-	<%= link_to "Zobacz swoje projekty!", projects_path %>
-	Jeżeli nie jesteś <%= @current_user.name %> to <%= link_to 'wyloguj się!', logout_path %>
+	<%= link_to "Create new project!", new_project_path %>
+	<%= link_to "Browse your projects!!", projects_path %>
+	If you're not <%= @current_user.name %> to <%= link_to 'log out!', logout_path %>
 </pre>
 <% else %>
 <pre>
-	<%= link_to 'Zaloguj się!', login_path %>
-	Nie masz jeszcze konta? 
-	<%= link_to 'Zarejestruj się!', new_user_path %>
+	<%= link_to 'Log in!', login_path %>
+	Dont have account yet? 
+	<%= link_to 'Sign up!', new_user_path %>
 </pre>
 <% end %>
 

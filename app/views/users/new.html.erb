@@ -1,5 +1,11 @@
+<div>
+<!--TODO: COLORS AROUND ERROR FIELDS AND NICE ERROR MESSAGES-->
+<% @user.errors.full_messages.each do |msg| %>
+<%= msg %><br>
+<% end %>
 
 <%= form_for(@user) do |f| %>
+
 	<div class = 'field'>
 	<%= f.label :name %>
 	<%= f.text_field :name %>
@@ -17,6 +23,7 @@
 	<%= f.password_field :password_confirmation %>
 	</div>
 	<div class = 'action'>
-	<%= f.submit %>
+	<%= f.submit 'Sign up!' %>
 	</div>
 <% end %>
+</div>

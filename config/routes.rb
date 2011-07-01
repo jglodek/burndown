@@ -4,10 +4,10 @@ Burndown::Application.routes.draw do
   resources :users
   resources :sessions
 
-  match '/logout', :controller => 'sessions', :action => 'destroy'
-  match '/login', :controller => 'sessions', :action => 'new'
-  match '/register', :controller => 'users', :action => 'create'
-  match '/signup', :controller => 'users', :action => 'new'
+  match '/logout' =>'sessions#destroy'
+  match '/login'  => "sessions#new"
+  match '/register' =>'users#create'
+  match '/signup' =>'users#new'
   
   # The priority is based upon order of creation:
   # first created -> highest priority.
