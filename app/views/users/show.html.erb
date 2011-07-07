@@ -1,0 +1,10 @@
+<pre>
+Welcome to you account settings page
+Your name : <%= @current_user.name%>
+Your email : <%= @current_user.email%>
+<%= link_to "Change name" , account_change_name_path %>
+<%= link_to "Change email", account_change_email_path %>
+<%= link_to "Change password", account_change_password_path %>
+<%= link_to "Delete account", account_delete_path %>
+
+</pre>
