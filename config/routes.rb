@@ -8,7 +8,14 @@ Burndown::Application.routes.draw do
   match '/login'  => "sessions#new"
   match '/register' =>'users#create'
   match '/signup' =>'users#new'
-  
+  match '/account' => 'users#show'
+  match '/home' => 'main_page#index'
+	match '/account/change_name' => 'users#edit_name'
+	match '/account/change_email' => 'users#edit_email'
+	match '/account/change_password' => 'users#edit_password'
+	match '/account/delete' => 'users#destroy'
+
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

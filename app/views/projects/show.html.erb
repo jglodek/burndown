@@ -2,6 +2,6 @@
 <pre>
 	PROJECT <%= @project.title %>
 	DESCRIPTION <%= @project.description %>
-	MY ROLE <%= (role_to_string :role => @project_membership.role).upcase %>
+	MY ROLE <%= (project_role_to_string :role => @project_membership.role).upcase %>
 </pre>
 </div>

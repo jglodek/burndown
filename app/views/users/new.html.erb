@@ -1,11 +1,9 @@
 <div>
-<!--TODO: COLORS AROUND ERROR FIELDS AND NICE ERROR MESSAGES-->
-<% @user.errors.full_messages.each do |msg| %>
-<%= msg %><br>
-<% end %>
+<!--TODO: COLORS AROUND ERROR FIELDS-->
 
-<%= form_for(@user) do |f| %>
+<%= raw activerecord_error_list(@user.errors) %>
 
+<%= form_for @user  do |f| %>
 	<div class = 'field'>
 	<%= f.label :name %>
 	<%= f.text_field :name %>

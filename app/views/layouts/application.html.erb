@@ -8,16 +8,23 @@
 </head>
 <body>
 
-<% if flash[:notice] %>
-	<h1><%= flash[:notice] %></h1>
-<% end %>
+<h1>
+	<%= display_standard_flashes %>
+</h1>
 
-<% if flash[:error] %>
-	<h1><%= flash[:error] %></h1>
-<% end %>
+<div style="position:absolute; top:0px; height:40px;">
+	<%= link_to 'Home', root_url %>
+	
+	<% if @current_user %>
+	<%= link_to 'Projects', projects_path %>
+	<%= link_to 'Account', account_path %>	
+	<%end%>
+	<= link_to 'Help', help_url >
 
-<%= yield %>
-
+</div>
+<div style="position:absolute; top:40px;">
+	<%= yield %>
+</div>
 
 <%= render "shared/debug_box" %>
 <%= render "shared/login_box"%>

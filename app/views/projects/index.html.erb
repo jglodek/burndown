@@ -6,6 +6,7 @@
 	<td>Created</td>
 	<td>Finished</td>
 	<td>Workers</td>
+	<td>Role</td>
 </tr>
 <% @all_projects.each do |p| %>
 <tr>
@@ -13,7 +14,8 @@
 	<td><%= p.description %></td>
 	<td><%= p.created_at %></td>
 	<td><%= p.finished_at ? p.finished_at : "Unfinished" %></td>
-	<td><%= p.project_memberships.size %></td>
+	<td><%= p.project_members_count %></td>
+	<td><%= project_role_to_string :role =>0%></td>
 </tr>
 <% end %>
 </table>

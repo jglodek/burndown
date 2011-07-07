@@ -9,7 +9,7 @@ module NavigationHelpers
     case page_name
 
     when /^the home\s?page$/
-      '/'
+      '/home'
 
     when /^my projects page$/
       '/projects'
@@ -19,6 +19,25 @@ module NavigationHelpers
 		
 		when /^my account page$/
 			'/account'
+			
+		when /^terms of use page$/
+			'/terms_of_use'
+			
+		when /^sign up page$/
+			'/signup'
+		
+		when /^change email page$/
+			'/account/change_email'
+			
+		when /^change name page$/
+			'/account/change_name'
+			
+		when /^change password page$/
+			'/account/change_password'
+			
+		when /^delete account page$/
+			'/account/delete'
+		
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #
