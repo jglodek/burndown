@@ -62,6 +62,14 @@ Given /^I am logged in as user with name "([^"]*)" email "([^"]*)" and password 
 	And %{I press "Log in"}
 end
 
+Given /^I am logged in as user with email "([^"]*)" and password "([^"]*)"$/ do |email, password|
+	Given %{user with name "Adolf" email "#{email}" and password "#{password}" exists}
+	And %{I am on the login page}
+	And %{I fill in "Email" with "#{email}"}
+	And %{I fill in "Password" with "#{password}"}
+	And %{I press "Log in"}
+end
+
 Given /^I am logged in as user with email "([^"]*)"$/ do |name|
 	Given %{user with name "Est Testowski" email "#{email}" and password "password" exists}
 	And %{I am on the login page}

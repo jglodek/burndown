@@ -4,7 +4,7 @@
 <pre>
 	<%= link_to "Create new project!", new_project_path %>
 	<%= link_to "Browse your projects!!", projects_path %>
-	If you're not <%= @current_user.name %> to <%= link_to 'log out!', logout_path %>
+	If you're not <%= @current_user.name %>, <%= link_to 'log out!', logout_path %>
 </pre>
 <% else %>
 <pre>

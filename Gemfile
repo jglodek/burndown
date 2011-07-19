@@ -44,5 +44,6 @@ group :cucumber do
   gem 'rspec-rails', '>=1.2.2'
   gem 'spork'
   gem 'launchy'    # So you can do Then show me the page
+  gem 'cover_me'
 end  
 

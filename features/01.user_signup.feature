@@ -8,11 +8,7 @@ Feature:
 	When I am on the home page
 	Then I should see "Sign up!"
 	When I follow "Sign up"
-	And I fill in "Name" with "Joe the tester"
-	And I fill in "Email" with "Joe@testers.com"
-	And I fill in "Password" with "Some password"
-	And I fill in "Password confirmation" with "Some password"
-	And I press "Sign up!"
+	And I am fill sign up form properly
 	Then I should see "Signed up!"
 	And user with email "Joe@testers.com" should exist
 	
@@ -34,10 +30,6 @@ Feature:
 	When I am on the home page
 	Then I should see "Sign up!"
 	When I follow "Sign up"
-	And I fill in "Name" with "Joe the tester"
-	And I fill in "Email" with "Joe@testers.com"
-	And I fill in "Password" with "Some password"
-	And I fill in "Password confirmation" with "Some other password"
-	And I press "Sign up!"
+	And I am fill sign up form with wrong password confirmation
 	Then I should see "Password doesn't match confirmation"
 	

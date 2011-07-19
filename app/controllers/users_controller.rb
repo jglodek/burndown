@@ -72,12 +72,16 @@ class UsersController < ApplicationController
 	
 	def destroy
 		if request.delete?
+			if params[:commit].eql?('Cancel')
+				redirect_to account_url
+				return
+			end
 			if @current_user
 				if @current_user.email == params[:email]
 					if @current_user.authenticate(params[:password])
 						@current_user.destroy
 						reset_session
-						redirect_to root_url, :notice => "User account deleted"
+						redirect_to home_url, :notice => "User account deleted"
 					else
 						@current_user.errors.add(:password, "incorrect")
 						render "destroy"
@@ -87,10 +91,11 @@ class UsersController < ApplicationController
 					render "destroy"
 				end
 			else
-				redirect_to root_url
+					redirect_to root_url
 			end
 		end
 	end
+	
 	def show
 	end
 	

@@ -1,6 +1,25 @@
 Feature:
 	As an user
 	I want to edit my projects
+
+	Scenario: Link to projects
+		Given I am logged in
+		And I am on the home page
+		Then I should see "Projects"
+		When I follow "Projects"
+		Then I should be on my projects page
+		And I should see table headers
+		And I should see new project button
+	
+	Scenario:
+		Given I am logged in
+
+
+	Scenario: Index
+		Given I am logged in
+		And I have project "Projekt 1 "
+		And I am on my projects page
+		Then I should see
 	
 	Scenario: Create project
 		Then fail
