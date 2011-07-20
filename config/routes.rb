@@ -9,13 +9,21 @@ Burndown::Application.routes.draw do
   match '/register' =>'users#create'
   match '/signup' =>'users#new'
   match '/account' => 'users#show'
-  match '/home' => 'main_page#index'
 	match '/account/change_name' => 'users#edit_name'
 	match '/account/change_email' => 'users#edit_email'
 	match '/account/change_password' => 'users#edit_password'
 	match '/account/delete' => 'users#destroy'
+	
+  match '/home' => 'pages#home'
+	match '/help' => 'pages#help'
+	match '/terms_of_use' => 'pages#terms_of_use'
 
+  # You can have the root of your site routed with "root"
+  # just remember to delete public/index.html.
+  # root :to => 'welcome#index'
 
+	root :to => 'pages#home'
+	
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -63,12 +71,6 @@ Burndown::Application.routes.draw do
   #     resources :products
   #   end
 
-  # You can have the root of your site routed with "root"
-  # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
-
-	root :to => 'main_page#index'
-	
   # See how all your routes lay out with "rake routes"
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.

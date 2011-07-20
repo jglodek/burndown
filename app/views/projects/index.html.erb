@@ -3,10 +3,10 @@
 <tr>
 	<td>Title</td>
 	<td>Description</td>
-	<td>Created</td>
-	<td>Finished</td>
-	<td>Workers</td>
-	<td>Role</td>
+	<td>Created at</td>
+	<td>Finished at</td>
+	<td>Members</td>
+	<td>Your role</td>
 </tr>
 <% @all_projects.each do |p| %>
 <tr>
@@ -20,4 +20,4 @@
 <% end %>
 </table>
 
-<%= link_to 'New project', new_project_path() %>
+<%= link_to 'Create new project', new_project_path() %>

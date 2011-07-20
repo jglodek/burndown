@@ -6,5 +6,5 @@ Feature:
 		
 	Scenario: Tour
 		Given I am on the home page
-		Then I should see "tour"
+		Then I should see "Tour"
 		

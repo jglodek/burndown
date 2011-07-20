@@ -38,6 +38,11 @@ module NavigationHelpers
 		when /^delete account page$/
 			'/account/delete'
 		
+		when /^terms of use page$/
+			'/terms_of_use'
+			
+		when /^help page$/
+			'/help'
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #

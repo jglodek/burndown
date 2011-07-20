@@ -1,5 +1,4 @@
 
-
 Then /^I should be logged out$/ do
 	Then %{ I should see "You're not logged in." }
 end
@@ -52,6 +51,7 @@ Given /^I am logged in$/ do
 	And %{I fill in "Email" with "#{email}"}
 	And %{I fill in "Password" with "#{password}"}
 	And %{I press "Log in"}
+	@user = User.find_by_email("test@testers.com").first
 end
 
 Given /^I am logged in as user with name "([^"]*)" email "([^"]*)" and password "([^"]*)"$/ do |name, email, password|
@@ -60,6 +60,7 @@ Given /^I am logged in as user with name "([^"]*)" email "([^"]*)" and password 
 	And %{I fill in "Email" with "#{email}"}
 	And %{I fill in "Password" with "#{password}"}
 	And %{I press "Log in"}
+	@user = User.find_by_email(email).first
 end
 
 Given /^I am logged in as user with email "([^"]*)" and password "([^"]*)"$/ do |email, password|
@@ -68,6 +69,7 @@ Given /^I am logged in as user with email "([^"]*)" and password "([^"]*)"$/ do 
 	And %{I fill in "Email" with "#{email}"}
 	And %{I fill in "Password" with "#{password}"}
 	And %{I press "Log in"}
+	@user = User.find_by_email(email).first
 end
 
 Given /^I am logged in as user with email "([^"]*)"$/ do |name|
@@ -76,6 +78,7 @@ Given /^I am logged in as user with email "([^"]*)"$/ do |name|
 	And %{I fill in "Email" with "#{email}"}
 	And %{I fill in "Password" with "password"}
 	And %{I press "Log in"}
+	@user = User.find_by_email("email").first
 end
 
 Then /^I should be logged in$/ do

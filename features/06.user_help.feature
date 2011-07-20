@@ -19,7 +19,7 @@ Feature:
 		And I should see "Managing projects"
 		And I should see "Creating a project"
 		And I should see "Adding items to backlog"
-		And I should see "Managing baclog items"
+		And I should see "Managing backlog items"
 		And I should see "Removing items from backlog"
 		And I should see "Creating burn-down chart"
 		And I should see "Saving burn-down chart to disc"
@@ -28,9 +28,7 @@ Feature:
 		
 	Scenario: Terms of use signup info
 		Given I am not logged in
-		And I am on the sign up page
-		When I follow "Sign Up!"
-		Then I should see "agrees with"
+		And I am on sign up page
 		And I should see "terms of use"
 		
 	Scenario: looking at terms of use

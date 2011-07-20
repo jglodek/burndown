@@ -45,5 +45,9 @@ group :cucumber do
   gem 'spork'
   gem 'launchy'    # So you can do Then show me the page
   gem 'cover_me'
+  gem 'guard-cucumber', "~> 0.5.2"
+  gem 'ZenTest'
+  gem "autotest-rails"
+  
 end  
 

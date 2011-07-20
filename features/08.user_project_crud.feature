@@ -8,13 +8,9 @@ Feature:
 		Then I should see "Projects"
 		When I follow "Projects"
 		Then I should be on my projects page
-		And I should see table headers
-		And I should see new project button
+		And I should see project table headers
+		And I should see new project link
 	
-	Scenario:
-		Given I am logged in
-
-
 	Scenario: Index
 		Given I am logged in
 		And I have project "Projekt 1 "

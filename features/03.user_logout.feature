@@ -9,3 +9,4 @@ Feature:
 		And I follow "Logout"
 		Then I should see "Logged out"
 		And I should see "You're not logged in"
+

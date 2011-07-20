@@ -16,7 +16,6 @@ begin
   namespace :cucumber do
   	Cucumber::Rake::Task.new do |t|
   		t.cucumber_opts = %w{--format progress}
-  		t.rcov = true
  		end
    
     Cucumber::Rake::Task.new({:ok => 'db:test:prepare'}, 'Run features that should pass') do |t|

@@ -32,6 +32,7 @@ class UserTest < ActiveSupport::TestCase
 		pm = ProjectMembership.new
 		pm.project = project
 		pm.user = user
+		pm.role = 0
 		assert pm.save
 		project
 	end	
@@ -40,6 +41,7 @@ class UserTest < ActiveSupport::TestCase
 		pm = ProjectMembership.new
 		pm.project = project
 		pm.user = user
+		pm.role = 3
 		assert pm.save
 		pm
 	end

@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-	attr_accessible :email, :password, :password_confirmation, :name
+	attr_accessible :email, :email_confirmation, :password, :password_confirmation, :name
 	has_secure_password
 	
 	before_destroy :clean_up
@@ -16,5 +16,6 @@ class User < ActiveRecord::Base
 	validates_presence_of :email 
 	validates_presence_of :name
 	validates_uniqueness_of :email
+	validates_confirmation_of :email
 	validates_format_of :email, :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i, :message => "has invalid format"	
 end

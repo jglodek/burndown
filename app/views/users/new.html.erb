@@ -13,6 +13,10 @@
 	<%= f.text_field :email %>
 	</div>
 	<div class = 'field'>
+	<%= f.label :email_confirmation %>
+	<%= f.text_field :email_confirmation %>
+	</div>
+	<div class = 'field'>
 	<%= f.label :password %>
 	<%= f.password_field :password %>
 	</div>
@@ -20,6 +24,11 @@
 	<%= f.label :password_confirmation %>
 	<%= f.password_field :password_confirmation %>
 	</div>
+
+	<div>
+	By signing up you agree with <%= link_to 'terms of use', terms_of_use_url %>
+	</div>
+
 	<div class = 'action'>
 	<%= f.submit 'Sign up!' %>
 	</div>
