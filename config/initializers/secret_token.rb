@@ -4,4 +4,4 @@
 # If you change this key, all old signed cookies will become invalid!
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-Burndown::Application.config.secret_token = '11a06f444a8e08f708892c1ca58e2d63f335955f3a02889af251da76cb534bcaaa49b30d2a6ab5b1d645241014d8fb10ae4f5fecb180580731879deaadebf290'
+Burndown::Application.config.secret_token = '10a553b7895348dabe1f42beb14d1d8f3236d1dfb4de233f15e688ecd56b33f831da009761ae956e713dc469e062ae941298663859ed8b296b95eda134a08fc0'
