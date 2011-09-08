@@ -5,11 +5,11 @@
 
 <%= form_for @current_user, :url => account_change_email_path do |f| %>
 	<div class = 'field'>
-	<%= f.label :email %>
+	<%= f.label :email %><br />
 	<%= f.text_field :email %>
 	</div>
 	<div class = 'field'>
-	<%= f.label :email_confirmation %>
+	<%= f.label :email_confirmation %><br />
 	<%= f.text_field :email_confirmation %>
 	</div>
 	<div class = 'action'>

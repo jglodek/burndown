@@ -5,10 +5,10 @@
 
 <%= form_for @current_user, :url => account_change_name_path do |f| %>
 	<div class = 'field'>
-	<%= f.label :name %>
+	<%= f.label :name %><br />
 	<%= f.text_field :name %>
 	</div>
-	<div class = 'action'>
+	<div class = 'action'><br />
 	<%= f.submit 'Change name!' %>
 	</div>
 <% end %>

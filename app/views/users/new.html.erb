@@ -1,27 +1,26 @@
 <div>
-<!--TODO: COLORS AROUND ERROR FIELDS-->
 
 <%= raw activerecord_error_list(@user.errors) %>
 
 <%= form_for @user  do |f| %>
 	<div class = 'field'>
-	<%= f.label :name %>
+	<%= f.label :name %><br />
 	<%= f.text_field :name %>
 	</div>
 	<div class = 'field'>
-	<%= f.label :email %>
+	<%= f.label :email %><br />
 	<%= f.text_field :email %>
 	</div>
 	<div class = 'field'>
-	<%= f.label :email_confirmation %>
+	<%= f.label :email_confirmation %><br />
 	<%= f.text_field :email_confirmation %>
 	</div>
 	<div class = 'field'>
-	<%= f.label :password %>
+	<%= f.label :password %><br />
 	<%= f.password_field :password %>
 	</div>
 	<div class = 'field'>
-	<%= f.label :password_confirmation %>
+	<%= f.label :password_confirmation %><br />
 	<%= f.password_field :password_confirmation %>
 	</div>
 

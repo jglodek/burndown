@@ -1,6 +1,9 @@
 Burndown::Application.routes.draw do
  
+  
   resources :projects
+	resources :backlog_items
+	
   resources :users
   resources :sessions
 

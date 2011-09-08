@@ -1,5 +1,5 @@
 class ProjectMembership < ActiveRecord::Base
-	belongs_to :project
+	belongs_to :project,  :counter_cache => true
 	belongs_to :user
 	validates_presence_of :user, :on => :create
 	validates_presence_of :project, :on => :create
@@ -8,7 +8,7 @@ class ProjectMembership < ActiveRecord::Base
 	before_destroy :clean_up?
 	
 	def clean_up?
-		if self.project.project_members_count == 1
+		if self.project.project_memberships.count == 1
 			self.project.destroy
 		end
 	end

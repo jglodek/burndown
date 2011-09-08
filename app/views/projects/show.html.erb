@@ -1,7 +1,49 @@
 <div>
 <pre>
-	PROJECT <%= @project.title %>
-	DESCRIPTION <%= @project.description %>
-	MY ROLE <%= (project_role_to_string :role => @project_membership.role).upcase %>
+Project:
+	Title: <%= @project.title %>
+	Description: <%= @project.description %>
+	Your role: <%= project_role_to_string(@project_membership.role).capitalize %>
+	Created at: <%= @project.created_at %>
+	Finished at: <%= @project.finished_at ? @project.finished_at : "Unfinished" %>
+	Members count: <%= @project.project_memberships.size %>
+	<%= link_to 'Edit project info', edit_project_path(@project) %>
+	<%= link_to 'Delete project', project_path(@project),:method => :delete, :confirm => "Are you sure you want to delete '#{@project.title}' project?" %>
+
 </pre>
+
+<h1>Backlog</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Priority</th>
+    <th>Cost</th>
+    <th>Created at</th>
+    <th>Finished at</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @backlog_items.each do |backlog_item| %>
+  <tr>
+    <td><%= backlog_item.title %></td>
+    <td><%= backlog_item.description %></td>
+    <td><%= backlog_item.priority %></td>
+    <td><%= backlog_item.cost %></td>
+    <td><%= backlog_item.created_at %></td>
+    <td><%= backlog_item.finished_at %></td>
+    <td><%= link_to 'Show', backlog_item %></td>
+    <td id="bi-edit-<%= backlog_item.id %>"><%= link_to 'Edit', edit_backlog_item_path(backlog_item) %></td>
+    <td><%= link_to 'Destroy', @project, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br/>
+
+<%= link_to 'New Backlog item', new_backlog_item_path(:project_id => "#{@project.id}") %>
+
 </div>

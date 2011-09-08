@@ -1,24 +1,13 @@
 class ProjectsController < ApplicationController
 	before_filter :only_if_logged_in
-
+	before_filter :get_project_from_params, :only => [:show, :edit, :update, :destroy]
 	def index
-		@all_projects = @current_user.projects
+		@project_memberships = ProjectMembership.where(:user_id => @current_user.id).includes(:project)
 	end
 	
 	def show
-		@project = Project.find_by_id(params[:id])
-		if @project
-			if @project_membership = ProjectMembership.where(:user_id => @current_user.id, :project_id => @project.id).first
-			else
-				flash[:notice] = "You dont have access to this, project."
-				redirect_to root_url
-			end
-		else
-			flash[:notice] = "Project does not exist."
-			redirect_to root_url
-		end
+		@backlog_items = @project.backlog_items
 	end
-	
 	
 	def new
 		@project = Project.new
@@ -39,9 +28,39 @@ class ProjectsController < ApplicationController
 				redirect_to projects_path()
 			end
 		else
-			flash[:error] = "Failed to create project"
-			redirect_to projects_path()
+			render "new"
 		end
 	end
 	
+	def edit
+	end
+
+	def update
+		if request.put?
+			if @project.update_attributes (params[:project])
+				redirect_to @project
+			else
+				render "edit_email"
+			end
+		end
+	end
+
+	def destroy	
+		if request.delete?
+			@project.destroy
+			flash[:notice] = "Project '#{@project.title}' successfuly deleted"
+			redirect_to projects_path
+		end
+	end
+	
+	
+private 
+	def get_project_from_params
+		@project_membership = ProjectMembership.where(:user_id => @current_user.id, :project_id => params[:id] ).includes(:project).first
+		if @project_membership
+			@project = @project_membership.project
+		else
+			respond_no_access_to_project
+		end
+	end
 end

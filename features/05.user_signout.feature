@@ -26,3 +26,21 @@ Feature:
 		And I press "Delete account"
 		Then I should be on the home page
 		And I should see "User account deleted"
+
+	Scenario: remove account, bad email
+		Given I am logged in as user with email "email@email.pl" and password "haslo"
+		When I am on delete account page
+		And I fill in "Email" with "email@emaial.pl"
+		And I fill in "Password" with "haslo"
+		And I press "Delete account"
+		Then I should be on delete account page
+		And I should see "Email incorrect"
+
+	Scenario: remove account, bad password
+		Given I am logged in as user with email "email@email.pl" and password "haslo"
+		When I am on delete account page
+		And I fill in "Email" with "email@email.pl"
+		And I fill in "Password" with "haslomaslo"
+		And I press "Delete account"
+		Then I should be on delete account page
+		And I should see "Password incorrect"

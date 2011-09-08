@@ -11,16 +11,17 @@ class UserTest < ActiveSupport::TestCase
   	$count = $count + 1
   	$count
   end
-  
-  def gen_user()
+
+	def gen_user()
   	user = User.new
   	num = it.to_s
   	user.name = "Name" + num
   	user.password = "pass" + num
   	user.password_confirmation = "pass" + num
-  	user.email = "email#{it}@email.com"
+  	user.email = "email#{num}@email.com"
+  	user.email_confirmation = "email#{num}@email.com"
   	user
-  end
+	end
 
 	def gen_project(user)
   	num = it.to_s
@@ -47,19 +48,20 @@ class UserTest < ActiveSupport::TestCase
 	end
 	 
   test "save email uniqueness" do
-
   	user1 = User.new
   	user1.name = "name"
   	user1.email = "email@email.com"
+  	user1.email_confirmation = "email@email.com"
   	user1.password = "pass"
   	user1.password_confirmation = "pass"
   	assert user1.save
   	user2 = User.new
   	user2.name = "name"
   	user2.email = "email@email.com"
+  	user2.email_confirmation = "email@email.com"
   	user2.password = "some_password"
   	user2.password_confirmation = "some_password"
-  	assert !user2.save
+		assert !user2.save
   	
   end
   
@@ -124,17 +126,18 @@ class UserTest < ActiveSupport::TestCase
   end
   
   test "user destroy with single project" do
-		user = gen_user
-		user.email = "elka@eiti.pw.edu.pl"
-		assert user.save
-		project = gen_project(user)
-		assert Project.where(:id => project.id).count !=0
-		assert ProjectMembership.where(:project_id => project.id, :user_id => user.id).count !=0
-		assert ProjectMembership.where(:project_id => project.id).first.role == 0
-		assert user.destroy
-		assert Project.where(:id => project.id).count == 0
-		assert ProjectMembership.where(:project_id => project.id, :user_id => user.id).count == 0
-  end
+		user1 = gen_user
+		user1.email = "elka@eiti.pw.edu.pl"
+		user1.email_confirmation = "elka@eiti.pw.edu.pl"
+		assert user1.save
+		project1 = gen_project(user1)
+		assert Project.where(:id => project1.id).count !=0
+		assert ProjectMembership.where(:project_id => project1.id, :user_id => user1.id).count !=0
+		assert ProjectMembership.where(:project_id => project1.id).first.role == 0
+		assert user1.destroy
+		assert Project.where(:id => project1.id).count == 0
+		assert ProjectMembership.where(:project_id => project1.id, :user_id => user1.id).count == 0
+	end
 
 
   test "user destroy other user project" do

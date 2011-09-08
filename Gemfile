@@ -20,6 +20,9 @@ gem 'jquery-rails'
 # Use unicorn as the web server
 # gem 'unicorn'
 
+# mongrel web server
+gem "mongrel", "~> 1.2.0.pre2"
+
 # Deploy with Capistrano
 # gem 'capistrano'
 
@@ -34,20 +37,21 @@ end
 group :test, :development do
   gem 'rspec', '>=1.2.2'
   gem 'rspec-rails', '>=1.2.2'
+  gem "nifty-generators", "~> 0.4.6"
 end
 
 group :cucumber do
-  gem 'capybara', '1.0.0'
+  gem 'capybara', '~> 1.1.1'
   gem 'database_cleaner'
   gem "cucumber-rails", "~> 1.0.2"
-  gem 'cucumber', '1.0.0'
+  gem "cucumber", "~> 1.0.2"
   gem 'rspec-rails', '>=1.2.2'
   gem 'spork'
   gem 'launchy'    # So you can do Then show me the page
   gem 'cover_me'
-  gem 'guard-cucumber', "~> 0.5.2"
-  gem 'ZenTest'
+  gem 'ZenTest', '~> 4.5.0'
+	gem 'Selenium'
+	gem 'selenium-client'
   gem "autotest-rails"
-  
 end  
 

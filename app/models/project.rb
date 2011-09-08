@@ -1,11 +1,8 @@
 class Project < ActiveRecord::Base
-	has_many :project_memberships
+	attr_accessible :title, :description
+	has_many :project_memberships, :dependent => :delete_all
 	has_many :users, :through => :project_membership
+	has_many :backlog_items, :dependent => :destroy
 	
 	validates_presence_of :title, :on => :create
-
-	def project_members_count
-		ProjectMembership.count(:conditions => "project_id = #{id}")
-	end
-	
 end

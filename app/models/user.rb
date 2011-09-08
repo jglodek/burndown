@@ -13,9 +13,8 @@ class User < ActiveRecord::Base
 	
 	validates_length_of :password,:if => :password_digest_changed?, :within => 4..520, :message => "length should be within 3 and 520 letters long"
 	validates_presence_of :password, :if => :password_digest_changed?
-	validates_presence_of :email 
 	validates_presence_of :name
-	validates_uniqueness_of :email
-	validates_confirmation_of :email
+	validates :email, :presence => true, :confirmation => true, :uniqueness => true 
+	validates_presence_of :email_confirmation, :if => :email_changed?
 	validates_format_of :email, :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i, :message => "has invalid format"	
 end

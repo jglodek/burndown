@@ -11,6 +11,9 @@ module NavigationHelpers
     when /^the home\s?page$/
       '/home'
 
+    when /^root page$/
+      '/'
+			
     when /^my projects page$/
       '/projects'
 
@@ -43,6 +46,10 @@ module NavigationHelpers
 			
 		when /^help page$/
 			'/help'
+			
+		when /^this project's page$/
+			'/projects/' + @project.id.to_s
+
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #

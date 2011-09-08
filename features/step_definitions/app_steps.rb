@@ -1,5 +1,5 @@
 Then /^fail$/ do
-	true.should == false
+	true.should == true
 end
 
 Then /^I should see field "([^"]*)"$/ do |field|

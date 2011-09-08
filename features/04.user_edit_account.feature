@@ -9,8 +9,12 @@ Feature:
 		Then I should see "Change name"
 		And I should see "Change email"
 		And I should see "Change password"
-		
-		
+	
+	Scenario: not logged in
+		Given I am not logged in
+		When I go to my account page
+		Then I should be on root page
+	
 	Scenario: access account, through account link
 		Given I am logged in as user with name "Wacław Testowski" email "waclaw@testers.com" and password "my_hidden_password" 
 		When I am on the home page
@@ -70,10 +74,21 @@ Feature:
 		When I am on my account page
 		When I follow "Change email"
 		When I fill in "Email" with "waclaw@testers.com"
+		When I fill in "Email confirmation" with "waclaw@testers.com"
 		And I press "Change email"
 		Then I should be on my account page
 		And I should see "Wacław Testowski"
 		And I should see "waclaw@testers.com"
+	
+	Scenario: change email, wrong confirmation
+		Given I am logged in as user with name "Wacław Testowski" email "waclaw_old_email@testers.com" and password "my_hidden_password" 
+		When I am on my account page
+		When I follow "Change email"
+		When I fill in "Email" with "waclaw@testers.com"
+		When I fill in "Email confirmation" with "waclaw@tasadasesters.com"
+		And I press "Change email"
+		Then I should be on change email page
+		And I should see "Email doesn't match confirmation"
 	
 	Scenario: change email, already taken
 		Given I am logged in as user with name "Wacław Testowski" email "waclaw_old_email@testers.com" and password "my_hidden_password" 
@@ -81,6 +96,7 @@ Feature:
 		When I am on my account page
 		When I follow "Change email"
 		When I fill in "Email" with "waclaw@testers.com"
+		When I fill in "Email confirmation" with "waclaw@testers.com"
 		And I press "Change email"
 		Then I should be on change email page
 		And I should see "Email has already been taken"
@@ -90,6 +106,7 @@ Feature:
 		When I am on my account page
 		And I follow "Change email"
 		And I fill in "Email" with "waclawtesters.com"
+		When I fill in "Email confirmation" with "waclaw@testers.com"
 		And I press "Change email"
 		Then I should see "invalid format"
 		And I should be on change email page

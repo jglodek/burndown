@@ -12,8 +12,9 @@ $LOAD_PATH.unshift(File.dirname(vendored_cucumber_bin) + '/../lib') unless vendo
 
 begin
   require 'cucumber/rake/task'
-
-  namespace :cucumber do
+	require 'cover_me'
+  
+	namespace :cucumber do
   	Cucumber::Rake::Task.new do |t|
   		t.cucumber_opts = %w{--format progress}
  		end

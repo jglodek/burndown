@@ -1,17 +1,11 @@
 module ApplicationHelper
 	
  	def project_role_to_string(p)
- 		case p[:role]
+ 		case p
 			when 0 
 				'owner'
-			when 1
-				'admin'
-			when 2 
-				'moderator'
-			when 3
-				'member'
 			else
-				'none'
+				'visitor'
 		end
  	end
 
@@ -44,5 +38,4 @@ module ApplicationHelper
 			error_list
 		end
 	end
- 	
 end

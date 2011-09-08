@@ -10,7 +10,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110706121339) do
+ActiveRecord::Schema.define(:version => 20110729151852) do
+
+  create_table "backlog_items", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.integer  "priority"
+    t.integer  "cost"
+    t.datetime "finished_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "project_id"
+  end
 
   create_table "project_memberships", :force => true do |t|
     t.integer  "role"
@@ -26,6 +37,7 @@ ActiveRecord::Schema.define(:version => 20110706121339) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "description"
+    t.integer  "project_memberships_count"
   end
 
   create_table "users", :force => true do |t|

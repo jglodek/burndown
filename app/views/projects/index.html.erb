@@ -1,23 +1,33 @@
+<table>
+<tr>
+	<th>Title</th>
+	<th>Description</th>
+	<th>Created at</th>
+	<th>Finished at</th>
+	<th>Members</th>
+	<th>Your role</th>
+	<th />
+	<th />
+	<th />
+</tr>
 
-<table border>
+<% @project_memberships.each do |pm| %>
+
 <tr>
-	<td>Title</td>
-	<td>Description</td>
-	<td>Created at</td>
-	<td>Finished at</td>
-	<td>Members</td>
-	<td>Your role</td>
+	<td><%= pm.project.title %></td>
+	<td><%= pm.project.description %></td>
+	<td><%= pm.project.created_at %></td>
+	<td><%= pm.project.finished_at ? pm.project.finished_at : "Unfinished" %></td>
+	<td><%= pm.project.project_memberships.size %></td>
+	<td><%= project_role_to_string(pm.role).capitalize %></td>
+	<td><%= link_to 'Show', pm.project, :id => "project_#{pm.project.id}" %></td>
+	<td><%= link_to 'Edit', edit_project_path(pm.project), :id => "edit_project_#{pm.project.id}" %></td>
+	<td><%= link_to 'Delete', project_path(pm.project),:method => :delete, :id => "delete_project_#{pm.project.id}", :confirm => "Are you sure you want to delete '#{pm.project.title}' project?"%></td>
 </tr>
-<% @all_projects.each do |p| %>
-<tr>
-	<td><%= link_to p.title, p %></td>
-	<td><%= p.description %></td>
-	<td><%= p.created_at %></td>
-	<td><%= p.finished_at ? p.finished_at : "Unfinished" %></td>
-	<td><%= p.project_members_count %></td>
-	<td><%= project_role_to_string :role =>0%></td>
-</tr>
+
 <% end %>
-</table>
 
+<tr>
 <%= link_to 'Create new project', new_project_path() %>
+</tr>
+</table>

@@ -26,7 +26,7 @@ class UsersController < ApplicationController
 					return
 				end
 			else
-				redirect_to root_url
+				respond_bad_request
 				return
 			end
 			if @current_user.save
@@ -43,7 +43,7 @@ class UsersController < ApplicationController
 			if params[:user][:name]
 				@current_user.name = params[:user][:name]
 			else
-				redirect_to root_url
+					respond_bad_request
 			end
 			if @current_user.save
 				flash[:notice] = "Name changed"
@@ -58,8 +58,9 @@ class UsersController < ApplicationController
 		if request.put?
 			if params[:user][:email]
 				@current_user.email = params[:user][:email]
+				@current_user.email_confirmation = params[:user][:email_confirmation]
 			else
-				redirect_to root_url
+				respond_bad_request
 			end
 			if @current_user.save
 				flash[:notice] = "Email changed"
@@ -91,12 +92,12 @@ class UsersController < ApplicationController
 					render "destroy"
 				end
 			else
-					redirect_to root_url
+				respond_bad_request
 			end
 		end
 	end
 	
-	def show
+	def show  
 	end
 	
 end
