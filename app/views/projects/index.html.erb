@@ -21,7 +21,6 @@
 	<td><%= pm.project.project_memberships.size %></td>
 	<td><%= project_role_to_string(pm.role).capitalize %></td>
 	<td><%= link_to 'Show', pm.project, :id => "project_#{pm.project.id}" %></td>
-	<td><%= link_to 'Edit', edit_project_path(pm.project), :id => "edit_project_#{pm.project.id}" %></td>
 	<td><%= link_to 'Delete', project_path(pm.project),:method => :delete, :id => "delete_project_#{pm.project.id}", :confirm => "Are you sure you want to delete '#{pm.project.title}' project?"%></td>
 </tr>
 

@@ -8,9 +8,6 @@
 </head>
 <body>
 
-<h1>
-	<%= display_standard_flashes %>
-</h1>
 
 <div style="position:absolute; top:0px; height:40px;">
 	<%= link_to 'Home', root_url %>
@@ -29,6 +26,7 @@
 
 <%= render "shared/debug_box" %>
 <%= render "shared/login_box"%>
+<%= render "shared/flashes"%>
 
 </body>
 </html>
