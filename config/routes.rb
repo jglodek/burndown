@@ -1,25 +1,28 @@
 Burndown::Application.routes.draw do
- 
-  
+	resources :sessions
+  resources :users
   resources :projects
 	resources :backlog_items
+	resources :evaluations
 	
-  resources :users
-  resources :sessions
-
-  match '/logout' =>'sessions#destroy'
-  match '/login'  => "sessions#new"
-  match '/register' =>'users#create'
-  match '/signup' =>'users#new'
-  match '/account' => 'users#show'
+	put '/project/:id/finish' => "projects#finish", :as => "project_finish"
+	put '/project/:id/unfinish' => "projects#unfinish", :as => "project_unfinish"
+	
+	get '/backlog_items/:id/finish'=> "backlog_items#finish", :as => "finish_backlog_item"
+	
+	get '/logout' =>'sessions#destroy'
+  get '/login'  => 'sessions#new'
+  post '/register' =>'users#create'
+  get '/signup' =>'users#new'
+  get '/account' => 'users#show'
 	match '/account/change_name' => 'users#edit_name'
 	match '/account/change_email' => 'users#edit_email'
 	match '/account/change_password' => 'users#edit_password'
 	match '/account/delete' => 'users#destroy'
 	
-  match '/home' => 'pages#home'
-	match '/help' => 'pages#help'
-	match '/terms_of_use' => 'pages#terms_of_use'
+  get '/home' => 'pages#home'
+	get '/help' => 'pages#help'
+	get '/terms_of_use' => 'pages#terms_of_use'
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.

@@ -2,9 +2,9 @@ module ApplicationHelper
 	
  	def project_role_to_string(p)
  		case p
-			when 0 
+			when ProjectMembership::OWNER 
 				'owner'
-			else
+			when ProjectMembership::VISITOR 
 				'visitor'
 		end
  	end

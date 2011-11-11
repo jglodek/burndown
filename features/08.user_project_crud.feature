@@ -56,7 +56,15 @@ Feature:
 		And I go back to this project's page
 		Then I should see that project info has changed
 
-	@javascript
+	Scenario: Mark project as finished
+		Given I am logged in
+		And I have project
+		And I am on this project's page
+		When I choose to mark this project as finished
+		Then this project should be marked as finished
+		When I choose to mark this project as unfinished
+		Then this project should be marked as unfinished
+
 	Scenario: Delete project, through project page
 		Given I am logged in
 		And I have project
@@ -66,7 +74,6 @@ Feature:
 		And I should see project deletion notification
 		And project should be deleted
 	
-	@javascript
 	Scenario: Delete project, through projects index page
 		Given I am logged in
 		And I have project "Test project 1"

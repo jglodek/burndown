@@ -1,6 +1,6 @@
 
 Then /^I should be logged out$/ do
-	Then %{ I should see "You're not logged in." }
+	step %{ I should see "You're not logged in." }
 end
 
 
@@ -46,47 +46,58 @@ Given /^user with name "([^"]*)" email "([^"]*)" and password "([^"]*)" exists$/
 end
 
 Given /^I am logged in$/ do
-	Given %{user with name "Test Testowski" email "test@testers.com" and password "haslo_maslo" exists}
-	And %{I am on the login page}
-	And %{I fill in "Email" with "test@testers.com"}
-	And %{I fill in "Password" with "haslo_maslo"}
-	And %{I press "Log in"}
+	step %{user with name "Test Testowski" email "test@testers.com" and password "haslo_maslo" exists}
+	step %{I am on the login page}
+	step %{I fill in "Email" with "test@testers.com"}
+	step %{I fill in "Password" with "haslo_maslo"}
+	step %{I press "Log in"}
 	@user = User.find_by_email("test@testers.com")
 end
 
+
+Given /^I am logged in as someone else$/ do
+	step %{user with name "Krak Krakowski" email "krak@krakers.com" and password "haslo_maslo" exists}
+	step %{I am on the login page}
+	step %{I fill in "Email" with "krak@krakers.com"}
+	step %{I fill in "Password" with "haslo_maslo"}
+	step %{I press "Log in"}
+	@user = User.find_by_email("krak@krakers.com")
+end
+
+
 Given /^I am logged in as user with name "([^"]*)" email "([^"]*)" and password "([^"]*)"$/ do |name, email, password|
-	Given %{user with name "#{name}" email "#{email}" and password "#{password}" exists}
-	And %{I am on the login page}
-	And %{I fill in "Email" with "#{email}"}
-	And %{I fill in "Password" with "#{password}"}
-	And %{I press "Log in"}
+	step %{user with name "#{name}" email "#{email}" and password "#{password}" exists}
+	step %{I am on the login page}
+	step %{I fill in "Email" with "#{email}"}
+	step %{I fill in "Password" with "#{password}"}
+	step %{I press "Log in"}
 	@user = User.find_by_email(email)
 end
 
 Given /^I am logged in as user with email "([^"]*)" and password "([^"]*)"$/ do |email, password|
-	Given %{user with name "Adolf" email "#{email}" and password "#{password}" exists}
-	And %{I am on the login page}
-	And %{I fill in "Email" with "#{email}"}
-	And %{I fill in "Password" with "#{password}"}
-	And %{I press "Log in"}
+	step %{user with name "Adolf" email "#{email}" and password "#{password}" exists}
+	step %{I am on the login page}
+	step %{I fill in "Email" with "#{email}"}
+	step %{I fill in "Password" with "#{password}"}
+	step %{I press "Log in"}
 	@user = User.find_by_email(email)
 end
 
 Given /^I am logged in as user with email "([^"]*)"$/ do |email|
-	Given %{user with name "Est Testowski" email "#{email}" and password "password" exists}
-	And %{I am on the login page}
-	And %{I fill in "Email" with "#{email}"}
-	And %{I fill in "Password" with "password"}
-	And %{I press "Log in"}
+	step %{user with name "Est Testowski" email "#{email}" and password "password" exists}
+	step %{I am on the login page}
+	step %{I fill in "Email" with "#{email}"}
+	step %{I fill in "Password" with "password"}
+	step %{I press "Log in"}
 	@user = User.find_by_email(email)
 end
 
 Then /^I should be logged in$/ do
-	Then %{I should see "You're logged in as"}
+	step %{I should see "You're logged in as"}
 end
 
 When /^I log out$/ do
-	When %{I follow "Logout"}
+	step %{I follow "Logout"}
 end
 
 

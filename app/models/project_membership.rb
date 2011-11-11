@@ -13,4 +13,8 @@ class ProjectMembership < ActiveRecord::Base
 		end
 	end
 	
+	OWNER = 0
+	VISITOR = 1
+	NONE = 2
+	
 end

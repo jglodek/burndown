@@ -8,7 +8,6 @@
 	<th>Your role</th>
 	<th />
 	<th />
-	<th />
 </tr>
 
 <% @project_memberships.each do |pm| %>
@@ -16,8 +15,8 @@
 <tr>
 	<td><%= pm.project.title %></td>
 	<td><%= pm.project.description %></td>
-	<td><%= pm.project.created_at %></td>
-	<td><%= pm.project.finished_at ? pm.project.finished_at : "Unfinished" %></td>
+	<td><%=  pm.project.created_at.to_s(:short) %></td>
+	<td><%= pm.project.finished_at!=nil ?  pm.project.finished_at.to_s(:short) : 'Unfinished' %></td>
 	<td><%= pm.project.project_memberships.size %></td>
 	<td><%= project_role_to_string(pm.role).capitalize %></td>
 	<td><%= link_to 'Show', pm.project, :id => "project_#{pm.project.id}" %></td>
@@ -27,6 +26,6 @@
 <% end %>
 
 <tr>
-<%= link_to 'Create new project', new_project_path() %>
+<td><%= link_to 'Create new project', new_project_path() %></td>
 </tr>
 </table>

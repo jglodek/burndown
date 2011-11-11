@@ -4,12 +4,18 @@ Project:
 	Title: <%= @project.title %>
 	Description: <%= @project.description %>
 	Your role: <%= project_role_to_string(@project_membership.role).capitalize %>
-	Created at: <%= @project.created_at %>
-	Finished at: <%= @project.finished_at ? @project.finished_at : "Unfinished" %>
+	Created at: <%= @project.created_at.to_s(:short) %>
+	Finished at: <%= @project.finished_at!=nil ? @project.finished_at.to_s(:short) :'Unfinished' %>
+	Backlog items finished:<%= @project.finished_backlog_items %>/<%=@project.backlog_items.count%>
+	Cost points made: <%=@project.cost_points_finished%>/<%=@project.cost_points%>
 	Members count: <%= @project.project_memberships.size %>
 	<%= link_to 'Edit project info', edit_project_path(@project) %>
 	<%= link_to 'Delete project', project_path(@project),:method => :delete, :confirm => "Are you sure you want to delete '#{@project.title}' project?" %>
-
+	<% if !@project.finished? %>
+	<%= link_to 'Mark project as finished', project_finish_path(@project), :id=>'finish-project-link', :method => :put %>
+	<% else %>
+	<%= link_to 'Mark project as unfinished', project_unfinish_path(@project), :id=>'unfinish-project-link', :method => :put%>
+	<% end %>
 </pre>
 
 <h1>Backlog</h1>
@@ -21,7 +27,7 @@ Project:
     <th>Priority</th>
     <th>Cost</th>
     <th>Created at</th>
-    <th>Finished at</th>
+    <th>Finished</th>
     <th></th>
     <th></th>
     <th></th>
@@ -32,12 +38,12 @@ Project:
     <td><%= backlog_item.title %></td>
     <td><%= backlog_item.description %></td>
     <td><%= backlog_item.priority %></td>
-    <td><%= backlog_item.cost %></td>
-    <td><%= backlog_item.created_at %></td>
-    <td><%= backlog_item.finished_at %></td>
+    <td><%= backlog_item.recent_cost %></td>
+    <td><%= backlog_item.created_at.to_s(:short) %></td>
+    <td><%= backlog_item.finished? ? "Yes": "No" %></td>
     <td><%= link_to 'Show', backlog_item %></td>
-    <td id="bi-edit-<%= backlog_item.id %>"><%= link_to 'Edit', edit_backlog_item_path(backlog_item) %></td>
-    <td><%= link_to 'Destroy', @project, confirm: 'Are you sure?', method: :delete %></td>
+    <td id="edit-item-link-<%= backlog_item.id %>"><%= link_to 'Edit', edit_backlog_item_path(backlog_item) %></td>
+    <td><%= link_to 'Delete', backlog_item, confirm: 'Are you sure?',:id =>"delete-item-link-#{backlog_item.id}", :method => :delete %></td>
   </tr>
 <% end %>
 </table>
