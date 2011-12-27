@@ -1,0 +1,33 @@
+== Welcome to Burndown
+
+It's my app for bachelor's degree.
+
+=== Features
+
+User stories to be implemented:
+1. As a user I can sign in
+2. As a user I can login
+3. As a user I can log out
+4. As a user I can edit my account
+5. As a user i can sign out
+6. As a user I can view Help manual
+7. As a user I can watch tour on home page
+8. As a user I can CRUD projects
+9. As a user I can CRUD and evaluate backlog items in a project
+10. As a user I can create doodle-like invitation link
+11. As a user I can watch burndown chart of given project
+12. As a user I can download burndown chart
+13. As an admin I can manage all projects
+14. As an admin I can manage admin account
+15. As an admin I can manage backlog items in projects
+16. As an admin I can manage users
+17. As a user I can recover my password
+
+User stories look kinda wierd...
+That's because I wrote them so I can learn rails incrementaly.
+All features are more-or-less tested using Cucumber, models tested using unit tests.
+
+=== Libs
+
+Code test coverage checked with simplecov.
+Burndown chart made using HighStocks.

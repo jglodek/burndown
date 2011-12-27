@@ -1,4 +1,7 @@
 Burndown::Application.routes.draw do
+  ActiveAdmin.routes(self)
+  devise_for :admin_users, ActiveAdmin::Devise.config
+
 	resources :sessions
   resources :users
   resources :projects
@@ -7,6 +10,13 @@ Burndown::Application.routes.draw do
 	
 	put '/project/:id/finish' => "projects#finish", :as => "project_finish"
 	put '/project/:id/unfinish' => "projects#unfinish", :as => "project_unfinish"
+	
+	get '/invitation/:id' => "invitations#join", :as => "join_project"
+	get '/projects/:id/share'	=> "projects#create_invitation_link", :as=> "new_invitation_link"
+	delete '/invitation/:id' => "invitations#destroy", :as=> "invitation_link"
+	
+	put '/projects/:id/:id2' => "projects#make_owner", :as=> "make_owner"
+	delete '/projects/:id/:id2' => "projects#block_user", :as=> "block_user"
 	
 	get '/backlog_items/:id/finish'=> "backlog_items#finish", :as => "finish_backlog_item"
 	

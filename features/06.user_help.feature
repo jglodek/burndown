@@ -12,7 +12,7 @@ Feature:
 	Scenario: Help
 		Given I am on the home page
 		When I follow "Help"
-		Then I should see "list of contents"
+		Then I should see "List of contents"
 		And I should see "Creating an account"
 		And I should see "Editing account info"
 		And I should see "Removing account"

@@ -1,5 +1,5 @@
 <div>
-<h1>EDIT EMAIL MATE!</h1>
+<h1>Edit email</h1>
 
 <%= raw activerecord_error_list(@current_user.errors) %>
 
@@ -11,6 +11,9 @@
 	<div class = 'field'>
 	<%= f.label :email_confirmation %><br />
 	<%= f.text_field :email_confirmation %>
+	<div class = 'field'>
+	<%= f.label :password %><br />
+	<%= f.password_field :password %>
 	</div>
 	<div class = 'action'>
 	<%= f.submit 'Change email!' %>

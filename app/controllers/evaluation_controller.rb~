@@ -1,0 +1,44 @@
+class EvaluationController < ApplicationController
+  before_filter :only_if_logged_in
+	before_filter :get_evaluation, :only => [:new, :edit, :update, :destroy]
+
+	def new
+		@evaluation = Evaluation.new
+	end
+	
+	def create
+		evaluation = Evaluation.new(params[:evaluation])
+		if !evaluation.save
+			redirect_to backlog_items_path(evaluation.backlog_item), :error => "Error creating evaluation."
+		end
+	end
+
+  def edit
+		
+	end
+
+  def update
+		@evaluation.effective_date = params[:evaluation][:effective_date]
+		@evaluation.value = params[:evaluation][:value]
+		if !@evaluation.save
+			render "edit"
+ 		else
+			redirect_to backlog_items_path(@evaluation.backlog_item), :flash => "Evaluation updated successfuly!"
+		end
+  end
+
+	def destroy
+		@evaluation.destroy
+		redirect_to backlog_items_path(@evaluation.backlog_item), :flash => ""
+	end
+	
+private
+	def get_evaluation
+		@evaluation = Evaluation.find_by_id(params[:id])
+		if !@evaluation.authorize? 
+			respond_no_access_to_project
+			return
+		end
+	end
+
+end

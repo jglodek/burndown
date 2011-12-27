@@ -1,0 +1,1 @@
+<h2>To see this project, <%= link_to "sign up first!", signup_path() %> and enter link again.</h2>

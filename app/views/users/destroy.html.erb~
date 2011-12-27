@@ -1,0 +1,25 @@
+
+<pre>
+Notice:		Your projects will be deleted if you are only meber
+		If project that you own has more user, first user will become new owner
+		If you sign up again your memberships will not be restored automatically
+</pre>
+
+<%= raw activerecord_error_list(@current_user.errors) %>
+
+<%= form_for @current_user, :url => account_delete_path, :method => :delete do %>
+<div class = "field">
+	<%= label_tag :email %>
+	<%= text_field_tag :email, params[:email] %>
+</div>
+<div class = "field">
+	<%= label_tag :password %>
+	<%= password_field_tag :password%>
+</div>
+<div class = "action">
+	<%= submit_tag "Delete account", :confirm => "Are you sure?"%>
+</div>
+<div class = "action">
+	<%= submit_tag "Cancel"%>
+</div>
+<% end %>

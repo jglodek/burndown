@@ -1,0 +1,42 @@
+
+<%= raw activerecord_error_list(@backlog_item.errors) %>
+
+<%= form_for(@backlog_item) do |f| %>
+	
+	<%= f.hidden_field :project_id %>
+	
+	<div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.label :priority %><br />
+    <%= f.number_field :priority %>
+  </div>
+
+  <div class="field">
+    <%= f.label :cost %><br />
+    <%= f.number_field :cost, :value =>@backlog_item.recent_cost %>
+  </div>
+
+	<% if @can_finish == true %>
+  <div class="field">
+    <%= label_tag 'finished' %><br />
+		<% if !@backlog_item.finished? %>
+			<%= check_box_tag 'finished', 'finished', false %>
+		<% else %>
+			<%= check_box_tag 'finished', 'finished', true %>
+			<p>Finished at: <%= @backlog_item.finished_at.to_s(:long) %></p>
+		<% end%>
+  </div>
+	<% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+
+<% end %>

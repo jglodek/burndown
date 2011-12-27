@@ -1,0 +1,23 @@
+<h1>Welcome to burndown!</h1>
+
+<section id = "home-welcome">
+<% if @current_user %>
+	<p><%= link_to "Create new project!", new_project_path %></p>
+	<p><%= link_to "Browse your projects!!", projects_path %></p>
+	<p>If you're not <%= @current_user.name %>, <%= link_to 'log out!', logout_path %></p>
+<% else %>
+	<p><%= link_to 'Log in!', login_path %></p>
+	<p>Dont have account yet? </p>
+	<p><%= link_to 'Sign up!', signup_path %></p>
+<% end %>
+</section>
+
+<section id="home-tour">
+Tour
+<ul>
+	<li>Create account</li>
+	<li>Create project</li>
+	<li>Fill the backlog</li>
+	<li>Watch burn-down chart</li>
+</ul>
+</section>

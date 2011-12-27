@@ -1,7 +1,8 @@
 class ProjectsController < ApplicationController
 	before_filter :only_if_logged_in
-	before_filter :get_project_for_owner, :only => [:edit, :update, :destroy, :finish, :unfinish]
+	before_filter :get_project_for_owner, :only => [:edit, :update, :destroy, :finish, :unfinish, :create_invitation_link, :block_user, :make_owner]
 	before_filter :get_project_for_reader, :only => [:show]
+	
 	def index
 		@project_memberships = ProjectMembership.where(:user_id => @current_user.id).includes(:project)
 	end
@@ -78,12 +79,45 @@ class ProjectsController < ApplicationController
 		end
 	end
 	
+	def create_invitation_link
+		il = InvitationLink.new
+		il.project = @project
+		il.generate_key
+		if !il.save
+			redirect_to project_path @project, :error => "Could not create link"
+		else
+			redirect_to project_path @project, :notice => "Invitation link successfuly created"
+		end
+	end
+	
+	def block_user
+		pm = ProjectMembership.where(:project_id => params[:id], :user_id => params[:id2]).first
+		if pm.role == ProjectMembership::OWNER
+			redirect_to project_path(@project), :error => "Cannot remove owner from project"
+		else
+			pm.destroy
+			redirect_to project_path(@project), :notice => "User blocked"
+		end
+	end
+	
+	def make_owner
+		pm = ProjectMembership.where(:project_id => params[:id], :user_id => params[:id2]).first
+		pm.role = ProjectMembership::OWNER
+		if !pm.save
+			redirect_to project_path(@project), :error => "Error sharing ownership"		
+		else
+			redirect_to project_path(@project), :notice => "Successfuly shared ownership with user"
+		end
+	end
 	
 private 
 	def get_project_for_reader
 		@project = Project.find_by_id(params[:id])
 		if @project!= nil && @project.authorized_reader?(@current_user)
-			@project_membership = @project.owners_membership
+			@project_membership = @project.project_memberships.where(:user_id => @current_user.id).first
+			if @project_membership.role == ProjectMembership::OWNER
+				@owner = true
+			end
 		else
 			respond_no_access_to_project
 		end
@@ -92,7 +126,8 @@ private
 	def get_project_for_owner
 		@project = Project.find_by_id(params[:id])
 		if @project != nil && @project.authorized_owner?(@current_user)
-			@project_membership = @project.owners_membership
+			@owner = true
+			@project_membership = @project.project_memberships(:user_id => @current_user.id).first
 		else
 			respond_no_access_to_project
 		end

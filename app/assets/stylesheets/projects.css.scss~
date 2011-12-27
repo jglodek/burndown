@@ -1,0 +1,38 @@
+// Place all the styles related to the projects controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+#project-info 
+{
+	padding:5px;
+	display:block;
+	top:0px;
+	left:0px;
+	width:300px;
+	p 
+	{
+		margin:0px;
+		padding:0px;
+	}
+	
+	.description
+	{
+		margin-left:20px;
+		color:gray;
+	}
+}
+
+#burndown-chart
+{
+	position:absolute;
+	top:0px;
+	left:310px;
+	height:400px;
+	width:800px;
+}
+
+#project-backlog
+{
+	margin-top:100px;
+}

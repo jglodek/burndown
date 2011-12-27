@@ -1,0 +1,9 @@
+<div id="account-info">
+	<p>Welcome to you account settings page</p>
+	<p>Your name : <%= @current_user.name%></p>
+	<p>Your email : <%= @current_user.email%></p>
+	<p><%= link_to "Change name" , account_change_name_path %></p>
+	<p><%= link_to "Change email", account_change_email_path %></p>
+	<p><%= link_to "Change password", account_change_password_path %></p>
+	<p><%= link_to "Delete account", account_delete_path %></p>
+</div>

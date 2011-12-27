@@ -1,0 +1,35 @@
+<div>
+
+<%= raw activerecord_error_list(@user.errors) %>
+
+<%= form_for @user  do |f| %>
+	<div class = 'field'>
+	<%= f.label :name %><br />
+	<%= f.text_field :name %>
+	</div>
+	<div class = 'field'>
+	<%= f.label :email %><br />
+	<%= f.text_field :email %>
+	</div>
+	<div class = 'field'>
+	<%= f.label :email_confirmation %><br />
+	<%= f.text_field :email_confirmation %>
+	</div>
+	<div class = 'field'>
+	<%= f.label :password %><br />
+	<%= f.password_field :password %>
+	</div>
+	<div class = 'field'>
+	<%= f.label :password_confirmation %><br />
+	<%= f.password_field :password_confirmation %>
+	</div>
+
+	<div>
+	By signing up you agree with <%= link_to 'terms of use', terms_of_use_url %>
+	</div>
+
+	<div class = 'action'>
+	<%= f.submit 'Sign up!' %>
+	</div>
+<% end %>
+</div>

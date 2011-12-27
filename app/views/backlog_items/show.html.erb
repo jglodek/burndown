@@ -1,0 +1,63 @@
+<p>
+  <b>Title:</b> <%= @backlog_item.title %>
+</p>
+
+<p>
+  <b>Description:</b> <%= @backlog_item.description %>
+</p>
+
+<p>
+  <b>Priority:</b> <%= @backlog_item.priority %>
+</p>
+
+<p>
+  <b>Cost:</b>
+  <% if @backlog_item.recent_cost %>
+		<%= @backlog_item.recent_cost %>
+		<%= link_to 'Reevaluate', new_evaluation_path(:backlog_item_id=>@backlog_item.id) if @owner%>
+	<% else %>
+		<%= link_to 'Evaluate now!', new_evaluation_path(:backlog_item_id=>@backlog_item.id) if @owner%>
+	<% end %>
+</p>
+
+<p>
+	<b>Finished:</b>
+	<% if @backlog_item.finished? %>
+		Yes, at <%=@backlog_item.finished_at%>
+	<% else %>
+		Unfinished <%=link_to "Mark as finished", finish_backlog_item_path(@backlog_item), :id =>"finish-item-link" if @owner %>
+	<% end %>
+</p>
+
+<table>
+<tr>
+	<th>Type</th>
+	<th>Effective date</th>
+	<th>Value</th>
+</tr>
+<% @backlog_item.evaluations.each do |evaluation| %>
+	<tr>
+	<% case evaluation.evaluation_type %>
+	<% when Evaluation::COST_EVALUATION %>
+		<td>Cost evaluation</td>
+		<td><%= evaluation.effective_date.to_s(:short) %></td>
+		<td><%= evaluation.value %></td>
+	<% when Evaluation::FINISHED %>
+		<td>Finish</td>
+		<td><%= evaluation.effective_date.to_s(:short) %></td>
+		<td>
+	<% end %>
+	<td>
+		<%= link_to "Edit", edit_evaluation_path(evaluation), :id => "edit-evaluation-link-#{evaluation.id}" if @owner%>
+		<%= link_to "Delete", evaluation_path(evaluation), :id => "delete-evaluation-link-#{evaluation.id}", :method => :delete if @owner%>
+	</td>
+	</tr>
+<% end %>
+	<tr>
+	<td><%= link_to "New evaluation",new_evaluation_path(:backlog_item_id=>@backlog_item.id) if @owner %></td>
+	</tr>
+</table>
+<p>
+	<%= link_to 'Edit', edit_backlog_item_path(@backlog_item), :id => 'edit-item-link' if @owner %> |
+	<%= link_to 'Back', project_path(@backlog_item.project) %>
+</p>

@@ -1,0 +1,30 @@
+
+When /^I am fill sign up form properly$/ do
+	When %{I fill in "Name" with "Joe the tester"}
+	And %{I fill in "Email" with "Joe@testers.com"}
+	And %{I fill in "Email confirmation" with "Joe@testers.com"}
+	And %{I fill in "Password" with "Some password"}
+	And %{I fill in "Password confirmation" with "Some password"}
+	And %{I press "Sign up!"}
+end
+
+
+When /^I am fill sign up form with wrong password confirmation$/ do
+	When %{I fill in "Name" with "Joe the tester"}
+	And %{I fill in "Email" with "Joe@testers.com"}
+	And %{I fill in "Email confirmation" with "Joe@testers.com"}
+	And %{I fill in "Password" with "Some password"}
+	And %{I fill in "Password confirmation" with "Some passworadsad"}
+	And %{I press "Sign up!"}
+end
+
+
+When /^I am fill sign up form with wrong email confirmation$/ do
+	When %{I fill in "Name" with "Joe the tester"}
+	And %{I fill in "Email" with "Joe@testers.com"}
+	And %{I fill in "Email confirmation" with "Joeasddsa@testaaers.com"}
+	And %{I fill in "Password" with "Some password"}
+	And %{I fill in "Password confirmation" with "Some password"}
+	And %{I press "Sign up!"}
+end
+

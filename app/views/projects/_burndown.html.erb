@@ -1,0 +1,98 @@
+
+<script>
+
+$(function() {
+	// Create the chart
+	window.chart = new Highcharts.StockChart({
+		chart : {
+			renderTo : 'container'
+		},
+		maxZoom : 28800000,
+		rangeSelector : 
+		{
+			buttons : [ {
+				type : 'hour',
+				count : 24,
+				text : ' Day '
+			},{
+				type : 'day',
+				count : 7,
+				text : ' Week '
+			}, {
+				type : 'day',
+				count : 30,
+				text : ' Month '
+			},{
+				type : 'month',
+				count : 12,
+				text : ' Year '
+			}, {
+				type : 'all',
+				count : 1,
+				text : ' All '
+			}],
+			selected : 5,
+			inputEnabled : false
+		},
+
+		title : {
+			text : "'<%= @project.title%>' burn-down chart" 
+		},
+		plotOptions : {
+			dashStyle : 'Dash'
+		},
+		xAxis : {
+			type: 'datetime'
+		},
+
+		yAxis : {
+			title : {
+				text : 'Cost points left'
+			}
+		},
+		tooltip: {
+      formatter: function () {
+				tooltip_string = Highcharts.dateFormat("%e %B %Y %H:%M", this.x)+'<br>'+ Highcharts.numberFormat(this.y, 2) + ' cost points left. <br>';
+				if(this.point != null && this.point.name != null)
+				{
+					tooltip_string+= this.point.name;
+				}
+				return tooltip_string;
+			},
+			shared: false
+    },
+
+		series : [{
+			name : 'Cost points left',
+			data : <%=raw series_to_chart_data(@project.series)%>,
+			id : 'dataseries',
+			tooltip: {
+				yDecimals: 4
+			}
+		},
+
+		// the event marker flags
+// 		{
+// 			type : 'flags',
+// 			data : [{
+// 				x : Date.UTC(2011, 3, 25),
+// 				title : 'H',
+// 				text : 'Euro Contained by Channel Resistance'
+// 			}, {
+// 				x : Date.UTC(2011, 3, 28),
+// 				title : 'G',
+// 				text : 'EURUSD: Bulls Clear Path to 1.50 Figure'
+// 			}],
+// 			onSeries : 'dataseries',
+// 			shape : 'circlepin',
+// 			width : 16
+// 		}
+		]
+	});
+});
+
+</script>
+
+<%= javascript_include_tag "highstock.js" %>
+
+<div id="container" style="height: 500px; min-width: 500px"></div>		

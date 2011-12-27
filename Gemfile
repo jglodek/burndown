@@ -10,6 +10,9 @@ gem 'therubyracer'
 
 gem 'sqlite3'
 
+gem 'activeadmin'
+gem 'meta_search', '>= 1.1.0.pre'
+
 # for errors
 gem 'rack' , '1.3.5'
 
