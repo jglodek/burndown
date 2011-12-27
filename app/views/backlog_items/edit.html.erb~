@@ -1,6 +1,0 @@
-<h1>Editing backlog item</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Show', @backlog_item %> |
-<%= link_to 'Back', backlog_items_path %>
