@@ -18,7 +18,6 @@
 <% end %>
 <p><%= link_to "Create invitation link", new_invitation_link_path(@project), :id=>"create-invitation-link-link" if @owner %></p>
 
-<div id="invitations">
 	<% if @owner and @project.invitation_links.size>0%>
 		<table>
 		<tr>
@@ -32,6 +31,7 @@
 		<% end %>
 		</table>
 	<% end %>
+<div id="memberships">
 <h2>Memberships</h2>
 <table>
 	<tr>

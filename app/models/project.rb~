@@ -88,7 +88,6 @@ class Project < ActiveRecord::Base
 		dates_sums.each do |date, sum|
 			series.push [date, sum, dates_evals[date]]
 		end
-		#dodajemy dzisiejszą datę
 		series.push [Time.now,self.cost_points - self.cost_points_finished, nil]
 		
 		series

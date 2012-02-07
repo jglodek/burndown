@@ -88,13 +88,6 @@ ActiveRecord::Schema.define(:version => 20111115103620) do
     t.integer  "project_memberships_count"
   end
 
-  create_table "share_links", :force => true do |t|
-    t.string   "key"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "project_id"
-  end
-
   create_table "users", :force => true do |t|
     t.string   "email"
     t.string   "password_digest"
