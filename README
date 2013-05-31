@@ -1,6 +1,6 @@
 == Welcome to Burndown
 
-It's my app for bachelor's degree.
+It's an old, old... ooold app. Tool for managing agile backlog with burndown char
 
 === Features
 
@@ -24,10 +24,10 @@ User stories to be implemented:
 17. As a user I can recover my password
 
 User stories look kinda wierd...
-That's because I wrote them so I can learn rails incrementaly.
 All features are more-or-less tested using Cucumber, models tested using unit tests.
 
 === Libs
 
 Code test coverage checked with simplecov.
 Burndown chart made using HighStocks.
+
